@@ -2,46 +2,7 @@
     <v-container>
         <v-row>
             <v-col>
-                <div
-                class="d-flex py-10 mb-10 overflow-x-auto">
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                    <Stories/>
-                </div>
-
+                <!-- FAKE DATA -->
                 <v-menu
                   v-model="showMenu"
                   absolute
@@ -129,63 +90,23 @@
                     </template>
                 </v-menu>
             </v-col>
-
-            <v-navigation-drawer
-            app
-            fixed
-            right
-            top= "0px"
-            width= "280px"
-            color="indigo darken-2"
-            >
-                <v-list
-                dense
-                rounded
-                >
-                    <v-list-item
-                    v-for="item in items"
-                    :key="item.title"
-                    link
-                    >
-                        <v-list-item-icon>
-                            <v-icon>{{ item.icon }}</v-icon>
-                        </v-list-item-icon>
-
-                        <v-list-item-content>
-                            <v-list-item-title>{{ item.title }}</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-list>
-            </v-navigation-drawer>
         </v-row>
     </v-container>
 </template>
 
-
 <script>
-import Stories from "../components/Stories.vue";
 
 export default {
-    name: "Home",
+    name: "Chat",
     components:{
-        Stories,
+
     },
     data: () => ({
 
-        // SIDEBAR
-        showMenu: false,
-        items: [
-            { title: 'Click Me' },
-            { title: 'Click Me' },
-            { title: 'Click Me' },
-            { title: 'Click Me 2' },
-        ],
     }),
 
     watch: {
-      group () {
-        this.drawer = false
-      },
+
     },
 };
 </script>
