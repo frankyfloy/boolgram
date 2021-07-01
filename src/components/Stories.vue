@@ -1,24 +1,26 @@
 <template>
     <div class="text-center">
-    <v-dialog
-      v-model="dialog"
-      width="500"
-    >
-        <template v-slot:activator="{ on }">
-            <v-btn
-            icon
-            class="mx-4"
-            v-on="on"
-            >
-                <v-avatar
-                color="brown"
-                size="60"
 
+        <v-dialog
+        v-model="dialog"
+        width="500"
+        retain-focus
+        >
+            <template v-slot:activator="{ on }">
+                <v-btn
+                icon
+                class="mx-4"
+                v-on="on"
                 >
-                    <span class="white--text text-h5">{{ user.initials }}</span>
-                </v-avatar>
-            </v-btn>
-        </template>
+                    <v-avatar
+                    color="brown"
+                    size="60"
+                    >
+                        <span class="white--text text-h5">{{ user.initials }}</span>
+                    </v-avatar>
+
+                </v-btn>
+            </template>
 
             <v-card
             min-width="500px"
@@ -26,7 +28,6 @@
             app
             fixed
             right
-
             >
 
                 <v-list-item-content class="justify-center">
@@ -61,9 +62,9 @@
                         </v-btn>
                     </div>
                 </v-list-item-content>
-
             </v-card>
         </v-dialog>
+
     </div>
 </template>
 
@@ -77,6 +78,7 @@ export default {
             fullName: 'John Doe',
             email: 'john.doe@doe.com',
         },
+        dialog: false,
     }),
 }
 </script>

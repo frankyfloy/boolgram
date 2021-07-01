@@ -12,7 +12,6 @@
                     contain
                     height="50px"
                     width="120px"
-
                     src="@/assets/logo.png"
                     lazy-src="@/assets/logo.png"
                 >
@@ -35,15 +34,15 @@
                 <font-awesome-icon :icon="['far', 'paper-plane']"  size="lg" :style="{ color: 'black' }" />
             </router-link>
 
-            <router-link class="px-3" :to="{ name: 'CreatePost', params: {} }">
+            <router-link :disabled="true" class="px-3" :to="{ name: 'CreatePost', params: {} }">
                 <font-awesome-icon :icon="['far', 'plus-square']"  size="lg" :style="{ color: 'black' }" />
             </router-link>
 
-            <router-link class="px-3" :to="{ name: 'GlobalPost', params: {} }">
+            <router-link :disabled="true" class="px-3" :to="{ name: 'GlobalPost', params: {} }">
                 <font-awesome-icon :icon="['far', 'compass']"  size="lg" :style="{ color: 'black' }" />
             </router-link>
 
-            <Notifications />
+            <Notifications :loading="loading"/>
 
             <AvatarMenu />
 
@@ -67,7 +66,21 @@ export default {
     },
 
     data: () => ({
-
+        loading: false
     }),
-};
+
+
+
+
+    methods: {
+      async remove () {
+        this.loading = true
+
+        await new Promise(resolve => setTimeout(resolve, 3000))
+
+        this.loading = false
+      },
+    },
+
+  }
 </script>

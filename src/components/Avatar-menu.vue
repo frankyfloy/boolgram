@@ -10,6 +10,7 @@
             icon
             class="mx-3"
             v-on="on"
+            outlined
             >
                 <v-avatar
                 color="brown"
