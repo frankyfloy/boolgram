@@ -18,7 +18,7 @@
                 <router-link
                 :to="{ name: 'Profile', params: {} }"
                 >
-                    {{post.profile_name}}
+                    <strong>{{post.profile_name}}</strong>
                 </router-link>
 
                 <small>{{post.post_text}}</small>

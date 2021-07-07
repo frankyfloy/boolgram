@@ -12,6 +12,7 @@
               color="grey lighten-2"
               height="35px"
               class="mb-10"
+              elevation="1"
             >
                 <v-toolbar-title class="subtitle-2">{{nameGroup}}</v-toolbar-title>
             </v-toolbar>
@@ -34,12 +35,11 @@
 
                 <v-item v-slot="{ active, toggle }">
                     <div
-                    class="d-flex flex-column" elevation="2">
+                    class="d-flex flex-column">
                         <v-card
                             :img="post.post_image"
-                            elevation="3"
+                            elevation="2"
                             class="d-flex align-center portrait rounded-0"
-                            dark
                             height="500"
                             width="100%"
                             @click="toggle"
@@ -105,7 +105,7 @@ import Header from "@/components/post/Header.vue";
 </script>
 
 <style scoped>
-    .border1px{
+    .object{
         border: 1px solid black;
     }
 </style>

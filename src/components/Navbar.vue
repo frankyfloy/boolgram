@@ -3,10 +3,10 @@
     <v-app-bar
     app
     height="80"
-    class="grey darken-4"
+    class="black"
     >
         <v-col
-        :cols="this.$vuetify.breakpoint.mdAndUp ? 3 : 2"
+        :cols="this.$vuetify.breakpoint.mdAndUp ? 2 : 2"
         :class="this.$vuetify.breakpoint.mdAndUp ? '' : 'px-0'"
         >
 
@@ -16,6 +16,7 @@
             exact-active-class
             >
                 <v-img
+                    v-if="this.$vuetify.breakpoint.width > 1000"
                     class="hidden-md-and-down"
                     contain
                     height="50px"
@@ -24,9 +25,10 @@
                     lazy-src="@/assets/images/logoWhite.png"
                 >
                 </v-img>
+
                 <v-icon
-                class="hidden-md-and-up"
-                size="40"
+                v-else
+                size="45"
                 color="white"
                 >mdi-instagram
                 </v-icon>
@@ -37,12 +39,12 @@
 
         <v-col
         cols="4"
-        class="hidden-md-and-down">
+        class="hidden-md-and-down pr-5">
             <SearchProfile/>
         </v-col>
 
         <v-col
-        :cols="this.$vuetify.breakpoint.mdAndUp ? 4 : 10"
+        :cols="this.$vuetify.breakpoint.mdAndUp ? 3 : 10"
         :class="this.$vuetify.breakpoint.mdAndUp ? 'justify-space-between ml-auto' : 'justify-space-between px-0'"
         class="d-flex align-center ">
 
@@ -50,7 +52,6 @@
             plain
             :to="{ name: 'Home', params: {} }"
             >
-
                 <v-icon
                 size="25"
                 color="white"

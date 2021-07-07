@@ -3,8 +3,7 @@
         <v-row>
             <v-col>
                 <ConsolePost
-                :nameGroup="'Global post'"
-
+                :nameGroup="`Global post`"
                 />
             </v-col>
         </v-row>

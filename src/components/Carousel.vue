@@ -6,6 +6,7 @@
         <v-toolbar
         color="grey lighten-2"
         height="35px"
+        elevation="1"
         >
             <v-toolbar-title class="subtitle-2">Storie</v-toolbar-title>
         </v-toolbar>

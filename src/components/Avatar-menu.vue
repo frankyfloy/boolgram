@@ -9,13 +9,17 @@
             <v-btn
             icon
             v-on="on"
+            outlined
             >
                 <v-avatar
-                size="40"
+                size="45"
+                outlined
+                class="m-4 outline-white"
                 >
                     <v-img
                     v-if="user.profile_picture"
                     src="@/assets/images/fotoProfilo.jpg"
+                    contain
                     >
                     </v-img>
 
@@ -83,3 +87,10 @@ export default {
     }),
 }
 </script>
+
+
+<style media="screen">
+    .outline-white{
+        border: 2px solid #ffffff;
+    }
+</style>

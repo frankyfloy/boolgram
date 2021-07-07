@@ -48,6 +48,8 @@
                 fixed
                 right
                 >
+                    <h3 class="text-center py-3">Likes</h3>
+                    <v-divider></v-divider>
                     <v-list>
                         <v-list-item
                           v-for="(like, n) in likes"
@@ -55,9 +57,12 @@
                         >
 
                             <v-list-item-content>
-                                <v-list-item-title>
-                                    <small>{{like.username}}</small>
-                                </v-list-item-title>
+                                <router-link
+                                :to="{ name: 'Profile', params: {} }">
+                                    <v-list-item-title>
+                                        <span>{{like.username}}</span>
+                                    </v-list-item-title>
+                                </router-link>
                             </v-list-item-content>
 
                         </v-list-item>

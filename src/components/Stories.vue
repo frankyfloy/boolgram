@@ -1,9 +1,10 @@
 <template>
     <div class="text-center">
         <v-dialog
+        width="350"
         v-model="dialog"
-        width="80%"
         retain-focus
+        class="d-flex align-center"
         >
             <template v-slot:activator="{ on }">
                 <v-btn
@@ -19,23 +20,21 @@
             </template>
 
             <v-item v-slot="{ active, toggle }">
-                <div class="d-flex flex-column">
 
-                    <v-card
-                    class="d-flex align-center portrait"
-                    dark
-                    @click="toggle"
-                    min-width="500px"
-                    height="800px"
+                <v-card
+                height="600"
+                class="d-flex align-center portrait"
+                @click="toggle"
+                >
+                    <v-img
+                    :src="profile.profile_picture"
+                    :aspect-ratio="16/9"
+                    height="100%"
+                    contain
                     >
-                        <v-img
-                        :src="profile.profile_picture"
-                        :aspect-ratio="16/9"
-                        center
-                        >
-                        </v-img>
-                    </v-card>
-                </div>
+                    </v-img>
+                </v-card>
+
             </v-item>
         </v-dialog>
     </div>
