@@ -8,28 +8,36 @@
         <template v-slot:activator="{ on }">
             <v-btn
             icon
-            class="mx-3"
             v-on="on"
-            outlined
             >
                 <v-avatar
-                color="brown"
                 size="40"
-
                 >
-                    <span class="white--text text-h5">{{ user.initials }}</span>
+                    <v-img
+                    v-if="user.profile_picture"
+                    src="@/assets/images/fotoProfilo.jpg"
+                    >
+                    </v-img>
+
+                    <v-icon
+                    v-else
+                    dense
+                    >mdi-image-off
+                    </v-icon>
                 </v-avatar>
+
             </v-btn>
         </template>
+
 
         <v-card>
             <v-list-item-content class="justify-center">
                 <div class="mx-auto text-center">
-                    <v-avatar
-                    color="brown"
-                    >
-                    <span class="white--text text-h5">{{ user.initials }}</span>
-                </v-avatar>
+                    <Avatar
+                    :profile="user"
+                    :size="25"
+                    />
+
                 <h3>{{ user.fullName }}</h3>
                 <p class="text-caption mt-1">
                     {{ user.email }}
@@ -58,12 +66,19 @@
 
 
 <script>
+import Avatar from "@/components/Avatar.vue";
+
 export default {
+    components:{
+        Avatar
+    },
     data: () => ({
         user: {
-            initials: 'JD',
-            fullName: 'John Doe',
-            email: 'john.doe@doe.com',
+            profile_picture : '@/assets/images/fotoProfilo.jpg',
+            username: 'Frankyfloy',
+            initials: 'FS',
+            fullName: 'Francesco Sica',
+            email: 'fsica171@gmail.com',
         },
     }),
 }

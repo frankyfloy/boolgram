@@ -1,106 +1,101 @@
 <template>
-    <v-container>
-        <v-row>
-            <v-col>
-                <div
-                class="d-flex py-10 mb-10 overflow-x-auto">
 
-                    <Stories
-                    v-for="n in 40"
-                    :key="n"
-                    />
-
-                </div>
-
-                <v-menu
-                v-for="n in 10"
-                :key="n"
-                v-model="showMenu"
-                absolute
-                offset-y
-                >
-                    <template v-slot:activator="{ on, attrs }">
-                        <div class="px-3">
-                            <v-card
-                                class="portrait"
-                                img="https://cdn.vuetifyjs.com/images/cards/girl.jpg"
-                                height="300"
-                                width="600"
-                                v-bind="attrs"
-                                v-on="on"
-                            >
-                            </v-card>
-
-                            <v-list>
-                                <v-list-item
-                                  v-for="(item, index) in items"
-                                  :key="index"
-                                >
-                                    <v-list-item-title v-html="'Post ' + n  + ' '  + item.title" ></v-list-item-title>
-                                </v-list-item>
-                            </v-list>
-                        </div>
-                    </template>
-                </v-menu>
+    <v-row
+    class="justify-center"
+    >
+        <v-col
+        cols="12"
+        lg="6"
+        md="12"
+        sm="12"
+        xs="12"
+        :class="this.$vuetify.breakpoint.mdAndUp ? '' : 'px-0 pb-0'"
+        >
+            <v-col
+            cols="12"
+            :class="this.$vuetify.breakpoint.mdAndUp ? '' : 'px-0'"
+            >
+                <Carousel
+                :stories="storiesList"/>
             </v-col>
 
-            <v-navigation-drawer
-            app
-            fixed
-            right
-            top= "0px"
-            width= "280px"
-            color="indigo darken-2"
+            <v-col
+            cols="12"
+            :class="this.$vuetify.breakpoint.mdAndUp ? '' : 'px-0'"
             >
-                <v-list
-                dense
-                rounded
-                >
-                    <v-list-item
-                    v-for="(item, i) in 5"
-                    :key="item.title"
-                    link
-                    >
-                        <v-list-item-icon>
-                            <v-icon>{{ item.icon }}</v-icon>
-                        </v-list-item-icon>
+                <ConsolePost
+                :posts='postsList'
+                :statusReq= 'statusReq'
+                :nameGroup="'Post'"
+                />
+            </v-col>
 
-                        <v-list-item-content>
-                            <v-list-item-title v-html="item.title + '' + i"></v-list-item-title>
-                        </v-list-item-content>
+        </v-col>
 
-                    </v-list-item>
-                </v-list>
-            </v-navigation-drawer>
-        </v-row>
-    </v-container>
+        <v-col
+        cols="4"
+        class="hidden-md-and-down"
+        >
+            <v-col
+            cols="12"
+            >
+                <Tips
+                :profiles='storiesList'
+                />
+            </v-col>
+        </v-col>
+    </v-row>
+
 </template>
 
-
 <script>
-import Stories from "../components/Stories.vue";
+
+import Carousel from "../components/Carousel.vue";
+import ConsolePost from "../pages/home/Console-post.vue";
+import Tips from "../components/home/Tips.vue";
+
+// Vuex
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
+
     name: "Home",
     components:{
-        Stories,
+        Carousel,
+        ConsolePost,
+        Tips
     },
     data: () => ({
-
-        // SIDEBAR
-        showMenu: false,
-        items: [
-            { title: 'Comment 1' },
-            { title: 'Comment 2' },
-            { title: 'Comment 3' },
-            { title: 'Comment 4' },
-        ],
+        // TODO:
+        statusReq: false
     }),
+    mounted() {
+        this.storiesRequest();
 
-    watch: {
-      group () {
-        this.drawer = false
-      },
+        setTimeout(() => {
+
+            this.postsRequest();
+            this.statusReq = true;
+        }, 3000);
+
     },
+    computed: {
+        ...mapGetters('stories', [
+            'storiesList'
+        ]),
+        ...mapGetters('posts', [
+            'postsList',
+        ]),
+
+    },
+    methods:{
+        ...mapActions('stories', [
+            'storiesRequest',
+        ]),
+
+        ...mapActions('posts', [
+            'postsRequest',
+        ]),
+    }
 };
 </script>

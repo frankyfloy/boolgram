@@ -1,60 +1,102 @@
 <template>
-    <v-system-bar
+
+    <v-app-bar
     app
-    height="70"
-    class="white"
+    height="80"
+    class="grey darken-4"
     >
         <v-col
-        class="d-flex align-center"
+        :cols="this.$vuetify.breakpoint.mdAndUp ? 3 : 2"
+        :class="this.$vuetify.breakpoint.mdAndUp ? '' : 'px-0'"
         >
-            <div class="mx-3">
+
+            <v-btn
+            :to="{ name: 'Home', params: {} }"
+            plain
+            exact-active-class
+            >
                 <v-img
+                    class="hidden-md-and-down"
                     contain
                     height="50px"
                     width="120px"
-                    src="@/assets/logo.png"
-                    lazy-src="@/assets/logo.png"
+                    src="@/assets/images/logoWhite.png"
+                    lazy-src="@/assets/images/logoWhite.png"
                 >
                 </v-img>
-            </div>
+                <v-icon
+                class="hidden-md-and-up"
+                size="40"
+                color="white"
+                >mdi-instagram
+                </v-icon>
+            </v-btn>
+
+
         </v-col>
 
-        <v-col>
+        <v-col
+        cols="4"
+        class="hidden-md-and-down">
             <SearchProfile/>
         </v-col>
 
         <v-col
-        class="d-flex align-center justify-end">
+        :cols="this.$vuetify.breakpoint.mdAndUp ? 4 : 10"
+        :class="this.$vuetify.breakpoint.mdAndUp ? 'justify-space-between ml-auto' : 'justify-space-between px-0'"
+        class="d-flex align-center ">
 
-            <router-link class="px-3" :to="{ name: 'Home', params: {} }">
-                <font-awesome-icon icon="house-user"  size="lg" :style="{ color: 'black' }" />
-            </router-link>
+            <v-btn class=""
+            plain
+            :to="{ name: 'Home', params: {} }"
+            >
 
-            <router-link class="px-3" :to="{ name: 'Chat', params: {} }">
-                <font-awesome-icon :icon="['far', 'paper-plane']"  size="lg" :style="{ color: 'black' }" />
-            </router-link>
+                <v-icon
+                size="25"
+                color="white"
+                >mdi-home
+                </v-icon>
 
-            <router-link :disabled="true" class="px-3" :to="{ name: 'CreatePost', params: {} }">
-                <font-awesome-icon :icon="['far', 'plus-square']"  size="lg" :style="{ color: 'black' }" />
-            </router-link>
+            </v-btn>
 
-            <router-link :disabled="true" class="px-3" :to="{ name: 'GlobalPost', params: {} }">
-                <font-awesome-icon :icon="['far', 'compass']"  size="lg" :style="{ color: 'black' }" />
-            </router-link>
+            <v-btn
+            :to="{ name: 'Chat', params: {} }"
+            plain
+            >
+                <v-icon
+                color="white"
+                size="25"
+                >mdi-forum
+                </v-icon>
+            </v-btn>
+
+            <NewPost />
+
+            <v-btn
+            :to="{ name: 'Globalpost', params: {} }"
+            plain
+            >
+                <v-icon
+                color="white"
+                size="25"
+                >mdi-compass
+                </v-icon>
+            </v-btn>
 
             <Notifications :loading="loading"/>
 
-            <AvatarMenu />
+            <AvatarMenu/>
 
         </v-col>
 
-    </v-system-bar>
+    </v-app-bar>
 </template>
 
 <script>
     import SearchProfile from "../components/Search-profile.vue";
     import AvatarMenu from "../components/Avatar-menu.vue";
     import Notifications from "../components/Notifications.vue";
+    import NewPost from "../components/New-post.vue";
 
 export default {
     name: 'Navbar',
@@ -63,14 +105,12 @@ export default {
         AvatarMenu,
         SearchProfile,
         Notifications,
+        NewPost
     },
 
     data: () => ({
         loading: false
     }),
-
-
-
 
     methods: {
       async remove () {
@@ -81,6 +121,5 @@ export default {
         this.loading = false
       },
     },
-
   }
 </script>

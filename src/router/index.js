@@ -6,16 +6,27 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
+    alias: '/',
     name: 'Home',
     component: Home
   },
   {
     path: '/chat',
     name: 'Chat',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Chat.vue')
-  }
-]
+    component: () => import('../views/Chat.vue')
+  },
+  {
+    path: '/global',
+    name: 'Globalpost',
+    component: () => import('../views/Global-post.vue')
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: () => import('../views/Profile.vue')
+    }
+    ]
 
 const router = new VueRouter({
   mode: 'history',

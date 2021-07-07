@@ -1,28 +1,34 @@
 <template>
     <v-menu
     bottom
-    min-width="500px"
+    right
+    min-width="300px"
+
     rounded
     offset-y
+    transition="scale-transition"
     >
         <template v-slot:activator="{ on }">
             <v-btn
+            @click="view()"
             v-on="on"
             :loading="loading"
-            @click="view()"
-            :plain="!newNotifications"
+            color="white"
+            plain
+            min-width="0"
 
-            class="ma-1"
             aria-label="Notifications" role="notification" aria-hidden="false"
             >
                 <!-- TODO: add: pulse prop when there are new notifications -->
                 <v-badge
-                    :value="newNotifications"
-                    :pulse="newNotifications"
-                    color="green"
+                    :color="newNotifications ? 'green' : ''"
                     :content="newNotifications"
+
                 >
-                    <font-awesome-icon :icon="['far', 'heart']"  size="2x" :style="{ color: '#D50000' }"/>
+                    <v-icon
+                    :color="newNotifications ? 'red' : 'white'"
+                    size="25"
+                    >mdi-heart</v-icon>
                 </v-badge>
             </v-btn>
         </template>
@@ -37,7 +43,6 @@
 
     </v-menu>
 </template>
-
 
 <script>
 export default {
@@ -65,3 +70,9 @@ export default {
     },
 }
 </script>
+
+
+<style lang="scss">
+
+
+</style>
