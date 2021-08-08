@@ -3,8 +3,8 @@
     :size="size"
     >
         <v-img
-        v-if="profile.profile_picture"
-        :src="profile.profile_picture"
+        v-if="image"
+        :src="image"
         >
         </v-img>
 
@@ -21,8 +21,8 @@
     export default {
         name: "Avatar",
         props: {
-            profile: {
-                type: Object,
+            image: {
+                type: String,
             },
             size:{
                 type:Number,

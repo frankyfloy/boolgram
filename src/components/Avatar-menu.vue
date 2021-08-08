@@ -9,11 +9,9 @@
             <v-btn
             icon
             v-on="on"
-            outlined
             >
                 <v-avatar
                 size="45"
-                outlined
                 class="m-4 outline-white"
                 >
                     <v-img
@@ -56,6 +54,7 @@
                     </v-btn>
                     <v-divider class="my-3"></v-divider>
                     <v-btn
+                    @click="disconnect()"
                     depressed
                     rounded
                     text
@@ -70,7 +69,12 @@
 
 
 <script>
+
 import Avatar from "@/components/Avatar.vue";
+
+// Vuex
+import {  mapActions} from 'vuex';
+
 
 export default {
     components:{
@@ -85,12 +89,20 @@ export default {
             email: 'fsica171@gmail.com',
         },
     }),
+
+    methods: {
+
+        // Set User - Mutation
+        ...mapActions('authentication',['disconnect']),
+    },
+
+
 }
 </script>
 
 
 <style media="screen">
     .outline-white{
-        border: 2px solid #ffffff;
+        border: 2px solid #EEEEEE;
     }
 </style>

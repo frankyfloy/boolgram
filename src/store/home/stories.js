@@ -6,15 +6,12 @@ import {
 // Export
 export default {
     namespaced: true,
-
     state: {
         stories: null,
     },
-
     getters: {
         storiesList: (state) => state.stories || [],
     },
-
     actions: {
         storiesRequest({ commit }) {
             return new Promise((resolve, reject) => {
@@ -27,12 +24,11 @@ export default {
                     reject(err);
                 });
             });
-        },
+        }
     },
-
     mutations: {
         setStories(state, payload) {
             state.stories = payload;
-        },
-    },
+        }
+    }
 };

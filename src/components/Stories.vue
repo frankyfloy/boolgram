@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center">
+    <v-item-group class="text-center">
         <v-dialog
         width="350"
         v-model="dialog"
@@ -37,7 +37,7 @@
 
             </v-item>
         </v-dialog>
-    </div>
+    </v-item-group>
 </template>
 
 <script>

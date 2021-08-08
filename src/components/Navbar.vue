@@ -34,7 +34,6 @@
                 </v-icon>
             </v-btn>
 
-
         </v-col>
 
         <v-col
@@ -48,7 +47,7 @@
         :class="this.$vuetify.breakpoint.mdAndUp ? 'justify-space-between ml-auto' : 'justify-space-between px-0'"
         class="d-flex align-center ">
 
-            <v-btn class=""
+            <v-btn
             plain
             :to="{ name: 'Home', params: {} }"
             >

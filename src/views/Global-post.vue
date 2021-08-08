@@ -15,7 +15,6 @@
 import ConsolePost from "../pages/home/Console-post.vue";
 
 export default {
-
     name: "Globalpost",
     components:{
         ConsolePost,

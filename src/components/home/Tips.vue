@@ -27,6 +27,7 @@
 
                             <Avatar
                             :profile='profile'
+                            elevation="8"
                             />
 
                         </router-link>
@@ -60,4 +61,4 @@ export default {
         model: null,
     }),
 }
-</script>
+</script>ì

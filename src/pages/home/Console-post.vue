@@ -1,4 +1,4 @@
-<template>
+ <template>
     <v-item-group active-class="primary">
 
         <v-card
@@ -14,31 +14,34 @@
               class="mb-10"
               elevation="1"
             >
-                <v-toolbar-title class="subtitle-2">{{nameGroup}}</v-toolbar-title>
+                <v-toolbar-title class="subtitle-2">Post</v-toolbar-title>
             </v-toolbar>
 
             <v-col v-if="!statusReq"
             cols="12"
             >
-                <SkeletonPost />
+                <SkeletonPost/>
             </v-col>
 
             <v-col
-                v-for="(post, i) in posts"
+                v-for="(post, i) in postsList"
                 :key="'post' + i"
                 cols="12"
                 class="py-0"
             >
                 <Header
-                :post="post"
+                :creator="post.user_id"
+                :content="post.content"
+                :avatar="post.image"
                 />
 
                 <v-item v-slot="{ active, toggle }">
                     <div
                     class="d-flex flex-column">
                         <v-card
-                            :img="post.post_image"
-                            elevation="2"
+                            elevation="5"
+                            :img="post.image"
+
                             class="d-flex align-center portrait rounded-0"
                             height="500"
                             width="100%"
@@ -56,13 +59,13 @@
                     </div>
                 </v-item>
 
-                <!-- Commenti e like -->
+                <!-- Commenti e like
                 <PostEngagement
                 :comments="post.comments"
                 :likes="post.likes"
                 :postNum="i"
-                />
-                <v-divider v-if="i < posts.length - 1"
+                />-->
+                <v-divider v-if="i < postsList.length - 1"
                 class="my-10"></v-divider>
             </v-col>
         </v-card>
@@ -71,41 +74,46 @@
 
 <script>
 
-import PostEngagement from "@/components/post/PostEngagement.vue";
+// Vuex
+import { mapGetters, mapActions} from 'vuex';
+
+//import PostEngagement from "@/components/post/PostEngagement.vue";
 import SkeletonPost from "@/components/SkeletonPost.vue";
 import Header from "@/components/post/Header.vue";
 
-    export default {
+export default {
     components:{
         SkeletonPost,
-        PostEngagement,
         Header
     },
     data: () => ({
         benched: 0,
-
+        statusReq: false,
         attrs: {
             class: 'mb-6',
             boilerplate: true,
             elevation: 2,
         },
     }),
-    props: {
-        posts: {
-            type: Array,
-        },
-        statusReq:{
-            type:  Boolean,
-        },
-        nameGroup:{
-            type: String,
-        }
-    },
-  }
-</script>
+    mounted() {
 
-<style scoped>
-    .object{
-        border: 1px solid black;
+      setTimeout(() => {
+        this.postsRequest();
+        this.statusReq = true;
+      }, 3000);
+
+    },
+
+    computed: {
+      ...mapGetters('posts', [
+        'postsList',
+      ])
+    },
+
+    methods:{
+      ...mapActions('posts', [
+        'postsRequest',
+      ])
     }
-</style>
+}
+</script>

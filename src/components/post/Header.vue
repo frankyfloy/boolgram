@@ -2,14 +2,14 @@
     <v-toolbar
     class="d-flex py-3"
     height="auto"
-    elevation="2"
+    elevation="5"
     >
         <v-toolbar-title
-        class="d-flex"
+        class="d-flex text-wrap"
         >
             <router-link :to="{ name: 'Profile', params: {} }">
                 <Avatar
-                :profile='post'
+                :image='avatar'
                 :size="50"
                 />
             </router-link>
@@ -18,10 +18,9 @@
                 <router-link
                 :to="{ name: 'Profile', params: {} }"
                 >
-                    <strong>{{post.profile_name}}</strong>
+                    <h4>{{creator}}</h4>
                 </router-link>
-
-                <small>{{post.post_text}}</small>
+                <small>{{content}}</small>
             </div>
         </v-toolbar-title>
     </v-toolbar>
@@ -36,9 +35,15 @@ export default {
         Avatar
     },
     props: {
-        post: {
-            type: Object,
-        },
-    },
+      creator:{
+        type: Number
+      },
+      content:{
+        type: String
+      },
+      avatar:{
+        type: String
+      }
+    }
 }
 </script>

@@ -6,21 +6,19 @@ import {
 // Export
 export default {
     namespaced: true,
-
     state: {
         posts: null,
     },
-
     getters: {
         postsList: (state) => state.posts || [],
     },
-
     actions: {
         postsRequest({ commit }) {
             return new Promise((resolve, reject) => {
                 postsRequest()
                 .then((res) => {
-                    commit('setPosts', res.data);
+                    commit('setPosts',res.data.posts);
+                    console.log(res.data.posts)
                     resolve(res);
                 })
                 .catch((err) => {
@@ -29,7 +27,6 @@ export default {
             });
         },
     },
-
     mutations: {
         setPosts(state, payload) {
             state.posts = payload;

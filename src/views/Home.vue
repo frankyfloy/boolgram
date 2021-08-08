@@ -1,5 +1,4 @@
 <template>
-
     <v-row
     class="justify-center"
     >
@@ -18,18 +17,12 @@
                 <Carousel
                 :stories="storiesList"/>
             </v-col>
-
             <v-col
             cols="12"
             :class="this.$vuetify.breakpoint.mdAndUp ? '' : 'px-0'"
             >
-                <ConsolePost
-                :posts='postsList'
-                :statusReq= 'statusReq'
-                :nameGroup="'Post'"
-                />
+                <ConsolePost/>
             </v-col>
-
         </v-col>
 
         <v-col
@@ -45,7 +38,6 @@
             </v-col>
         </v-col>
     </v-row>
-
 </template>
 
 <script>
@@ -55,7 +47,7 @@ import ConsolePost from "../pages/home/Console-post.vue";
 import Tips from "../components/home/Tips.vue";
 
 // Vuex
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions} from 'vuex';
 
 export default {
 
@@ -65,37 +57,20 @@ export default {
         ConsolePost,
         Tips
     },
-    data: () => ({
-        // TODO:
-        statusReq: false
-    }),
+    data: () => ({}),
     mounted() {
         this.storiesRequest();
-
-        setTimeout(() => {
-
-            this.postsRequest();
-            this.statusReq = true;
-        }, 3000);
-
     },
     computed: {
         ...mapGetters('stories', [
             'storiesList'
-        ]),
-        ...mapGetters('posts', [
-            'postsList',
-        ]),
-
+        ])
     },
     methods:{
         ...mapActions('stories', [
             'storiesRequest',
-        ]),
-
-        ...mapActions('posts', [
-            'postsRequest',
-        ]),
+        ])
     }
-};
+}
 </script>
+

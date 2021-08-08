@@ -20,18 +20,19 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 // -------------
 
 
+
+
 Vue.use(AxiosPlugin);
 Vue.use(vuetify);
-
 
 Vue.config.productionTip = false
 
 new Vue({
-  router,
-  axios,
-  VueAxios,
-  store,
-  vuetify,
-  colors,
-  render: h => h(App)
+    router,
+    axios,
+    VueAxios,
+    store,
+    vuetify,
+    colors,
+    render: h => h(App)
 }).$mount('#app')
